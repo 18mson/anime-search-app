@@ -1,73 +1,133 @@
-# React + TypeScript + Vite
+# Anime Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+Anime Search App is a React application built with TypeScript and Vite that allows users to search for anime, view details, and explore related information. The app uses the Jikan API to fetch anime data and Redux for state management.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+### 1. Anime Search
+- Search for anime by title using the Jikan API
+- Debounced search input for better performance
+- Pagination support for search results
+- Loading states and error handling
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Anime Details
+- View detailed information about selected anime
+- Display of anime cover image, title, synopsis, genres, and studios
+- Loading states and error handling
 
-## Expanding the ESLint configuration
+### 3. UI Components
+- **AnimeCard**: Displays anime information in a card format
+- **EmptyState**: Shows different empty states for search and details
+- **ErrorMessage**: Displays error messages with a dismiss option
+- **Skeleton**: Loading skeletons for better UX during data fetching
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 4. State Management
+- Redux Toolkit for state management
+- Async thunks for handling API calls
+- Proper error handling and loading states
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 5. Testing
+- Unit tests for components using Vitest and React Testing Library
+- Mock API calls for testing
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Technical Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Core Technologies
+- React 19 with TypeScript
+- Vite for fast development and building
+- Redux Toolkit for state management
+- Axios for API calls
+- Tailwind CSS for styling
+
+### Development Tools
+- ESLint for code linting
+- Vitest for testing
+- React Testing Library for component testing
+
+### APIs
+- Jikan API for anime data
+
+## Project Structure
+
+```
+src/
+├── components/        # Reusable UI components
+│   ├── AnimeCard.tsx   # Anime card component
+│   ├── EmptyState.tsx  # Empty state component
+│   ├── ErrorMessage.tsx # Error message component
+│   └── Skeleton.tsx    # Loading skeleton components
+│
+├── hooks/             # Custom React hooks
+│   ├── useAppDispatch.ts # Typed dispatch hook
+│   └── useDebounce.ts   # Debounce hook
+│
+├── pages/             # Application pages
+│   ├── DetailPage.tsx  # Anime detail page
+│   └── SearchPage.tsx  # Anime search page
+│
+├── services/          # API services
+│   └── jikanApi.ts     # Jikan API service
+│
+├── store/             # Redux store
+│   ├── animeSlice.ts    # Anime slice with reducers
+│   └── store.ts         # Redux store configuration
+│
+├── types/             # TypeScript types
+│   └── anime.ts         # Anime-related types
+│
+├── App.css            # Global styles
+├── App.tsx            # Main app component
+├── index.css          # Global CSS
+└── main.tsx           # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
+- Node.js (v18 or later)
+- npm
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+Start the development server:
+```bash
+npm run dev
 ```
+
+### Building
+Build the project for production:
+```bash
+npm run build
+```
+
+### Testing
+Run tests:
+```bash
+npm run test
+```
+
+## Available Scripts
+
+- `dev`: Start development server
+- `build`: Build for production
+- `lint`: Run ESLint
+- `preview`: Preview production build
+- `test`: Run tests
+- `test:watch`: Run tests in watch mode
+- `test:cover`: Run tests with coverage
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
